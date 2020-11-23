@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH -J DDM_Eval
+#SBATCH --ntasks=1
+#SBATCH --partition=t4v1,p100,t4v2,rtx6000
+#SBATCH --qos=normal
+#SBATCH --gres=gpu:1
+#SBATCH -c 2 # Number of cpus requested
+#SBATCH --output ../OUTPUTS/ddm_eval_ml4h-%j-%a.out
+#SBATCH --export=ALL
+#SBATCH --mem=8GB
+#SBATCH --array=1-70%15
+
+echo $(tail -n+$SLURM_ARRAY_TASK_ID ddm_exp_params.txt | head -n1)
+
+cd ../scripts
+
+python -u train_model.py $(tail -n+$SLURM_ARRAY_TASK_ID ../slurm_scripts/ddm_exp_params.txt | head -n1)

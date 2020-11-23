@@ -1,0 +1,10 @@
+autoencoder: 'AIS' # 'AIS' 
+autoencoder_num_epochs: 600          
+hidden_size: 128                   
+autoencoder_lr: 0.001                               
+corr_coeff_param: 0               
+ais_gen_model: 1
+ais_pred_model: 1
+context_input: True              
+autoencoder_saving_period: 10              
+pol_learning_rate: 0.0001

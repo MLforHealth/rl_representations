@@ -1,0 +1,18 @@
+# Cortex PARAMETERS
+autoencoder: 'CDE' 
+autoencoder_num_epochs: 200          
+hidden_size: 64                     
+autoencoder_lr: 0.0001         
+corr_coeff_param: 0
+context_input: True               
+autoencoder_saving_period: 10 
+pol_learning_rate: 0.0001
+
+# CDE Hyperparameters
+encoder_hidden_hidden_channels: 100
+encoder_num_hidden_layers: 4
+decoder_num_units: 100
+decoder_num_layers: 3
+
+# CDE Encoded Data, appended to storage_path
+coefs_folder: './cde_data/'

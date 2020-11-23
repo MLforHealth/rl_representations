@@ -1,0 +1,8 @@
+autoencoder: 'RNN' 
+autoencoder_num_epochs: 500          
+hidden_size: 64                    
+autoencoder_lr: 0.001               
+corr_coeff_param: 0              
+context_input: True              
+autoencoder_saving_period: 10
+pol_learning_rate: 0.0001

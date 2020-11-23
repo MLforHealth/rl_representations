@@ -1,0 +1,15 @@
+autoencoder: 'ODERNN' 
+autoencoder_num_epochs: 100          
+hidden_size: 64                     
+autoencoder_lr: 0.001               
+corr_coeff_param: 0
+context_input: True               # Check to see if we'll add demographic context to the input
+autoencoder_saving_period: 10 
+pol_learning_rate: 0.0001
+
+# Hyperparameters
+odefunc_n_layers: 2
+odefunc_n_units: 50
+encoder_gru_units: 50
+decoder_n_layers: 3
+decoder_n_units: 100
