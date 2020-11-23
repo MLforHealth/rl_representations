@@ -1,5 +1,5 @@
 # An Empirical Study of Representation Learning for Reinforcement Learning in Healthcare
-Learning representations for RL in Healthcare under a POMDP assumption, honoring the sequential nature that data wherewith data is generate. This paper, accepted to the proceedings of the 2020 Machine Learning for Healthcare Workshop at NeurIPS, empirically evaluates several recurrent autoencoding architectures to assess the quality of the internal representations each learn. 
+Learning representations for RL in Healthcare under a POMDP assumption, honoring the sequential nature that data wherewith data is generate. This paper, accepted to the proceedings of the [2020 Machine Learning for Healthcare Workshop at NeurIPS](https://ml4health.github.io/2020/), empirically evaluates several recurrent autoencoding architectures to assess the quality of the internal representations each learn. 
 
 The motivation for this systematic analysis is that most prior work developing RL solutions for healthcare neglect to rigorously define state representations that respect the partial or sequential nature of the data generating process. We evaluate several recurrent autoencoding architectures, trained by predicting the subsequent physiological observation, by investigating the quality of the internal learned representations of patient state as well as develop treatment policies from them.
 
@@ -58,7 +58,7 @@ We aggregate the results of all model training and the analysis of the learned r
 See `requirements.txt`
 
 ## Authors
-* Taylor W. Killian[@twkillian](https://github.com/twkillian)
+* Taylor W. Killian [@twkillian](https://github.com/twkillian)
 * Haoran Zhang [@hzhang0](https://github.com/hzhang0)
 * Jaykumar Subramanian
 * Mehdi Fatemi
