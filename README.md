@@ -15,7 +15,7 @@ If you use this code in your research, please cite the following publication:
 }
 ```
 
-This paper can also be found on arxiv: {ARXIV_LINK}
+This paper can also be found on arxiv: [https://arxiv.org/abs/2011.11235](https://arxiv.org/abs/2011.11235)
 
 ## To replicate the experiments in the paper:
 ### Step 0: Environment and Prerequisites
