@@ -4,14 +4,15 @@ Learning representations for RL in Healthcare under a POMDP assumption, honoring
 The motivation for this systematic analysis is that most prior work developing RL solutions for healthcare neglect to rigorously define state representations that respect the partial or sequential nature of the data generating process. We evaluate several recurrent autoencoding architectures, trained by predicting the subsequent physiological observation, by investigating the quality of the internal learned representations of patient state as well as develop treatment policies from them.
 
 ## Paper
-If you use this code in your research, please cite the following publication:
+If you use this code in your research, please cite the following publication [link to PMLR version](http://proceedings.mlr.press/v136/killian20a):
 ```
 @inproceedings{killian2020empirical,
-  title={An Empirical Study of Representation Learning for Reinforcment Learning in Healthcare},
-  author={Killian, Taylor W. and Zhang, Haoran and Subramanian, Jayakuman and Fatemi, Mehdi and Ghassemi, Marzyeh},
-  booktitle={Machine Learning for Health Workshop},
-  pages={1--22},
-  year={2020}
+  title={An Empirical Study of Representation Learning for Reinforcement Learning in Healthcare},
+  author={Killian, Taylor W and Zhang, Haoran and Subramanian, Jayakumar and Fatemi, Mehdi and Ghassemi, Marzyeh},
+  booktitle={Machine Learning for Health},
+  pages={139--160},
+  year={2020},
+  organization={PMLR}
 }
 ```
 
