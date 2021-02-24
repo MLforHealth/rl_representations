@@ -45,9 +45,6 @@ X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, stratify=y_test,
 # Drop unneeded meta features
 full_zs = full_zs.drop(['m:presumed_onset', 'm:charttime', 'm:icustayid'], axis=1)
 
-# Adjust the actions column by adding 1 (accounts for mistake in how actions are extracted)
-full_zs.loc[:, 'a:action'] = full_zs['a:action']+1
-
 train_data = full_zs[full_zs['traj'].isin(X_train)]
 train_acuity = acuity_scores[acuity_scores['traj'].isin(X_train)]
 trajectories = train_data['traj'].unique()
