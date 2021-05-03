@@ -72,7 +72,7 @@ device = 'cpu'
 ################################################################
 
 
-dem_keep_cols = ['o:gender', 'o:mechvent', 'o:re_admission', 'o:age', 'o:Weight_kg']
+dem_keep_cols = ['o:gender', 'o:MechVent', 'o:re_admission', 'o:age', 'o:Weight_kg']
 obs_keep_cols = ['o:GCS', 'o:HR', 'o:SysBP',
        'o:MeanBP', 'o:DiaBP', 'o:RR', 'o:Temp_C', 'o:FiO2_1', 'o:Potassium',
        'o:Sodium', 'o:Chloride', 'o:Glucose', 'o:Magnesium', 'o:Calcium',
