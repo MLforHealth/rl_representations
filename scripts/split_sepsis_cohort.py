@@ -61,7 +61,7 @@ test_trajectories = test_data['traj'].unique()
 num_actions = 25
 state_dim = 47
 num_obs = 33
-num_dem = 5
+num_dem = 4
 num_acuity_scores = 3
 horizon = 21
 device = 'cpu'
@@ -293,7 +293,7 @@ test_obs = test_obs[test_lengths>1.0].to(device)
 test_dem = test_dem[test_lengths>1.0].to(device)
 test_times = test_times[test_lengths>1.0].to(device)
 test_acuities = test_acuities[test_lengths>1.0].to(device)
-test_mortality = test_mortality[test_lengths>1.0].to(device)
+#test_mortality = test_mortality[test_lengths>1.0].to(device)
 test_rewards = test_rewards[test_lengths>1.0].to(device)
 test_lengths = test_lengths[test_lengths>1.0].to(device)
 
@@ -315,7 +315,7 @@ print("Finished conversion")
 print("\n")
 print("Extracting Test set mortality")
 test_mortality = torch.Tensor(test_data.groupby('traj')['r:reward'].sum().values)
-test_mortality = test_mortality.unsqeeze(1).unsqueeze(1)
+test_mortality = test_mortality.unsqueeze(1).unsqueeze(1)
 test_mortality = test_mortality.repeat(1,20,1)  # Put in the same general format as the patient trajectories
 # Save off mortality tuple
 torch.save(test_mortality,os.path.join(save_dir,'test_mortality_tuple'))
