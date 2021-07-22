@@ -61,7 +61,7 @@ test_trajectories = test_data['traj'].unique()
 num_actions = 25
 state_dim = 47
 num_obs = 33
-num_dem = 4
+num_dem = 5
 num_acuity_scores = 3
 horizon = 21
 device = 'cpu'
@@ -72,7 +72,7 @@ device = 'cpu'
 ################################################################
 
 
-dem_keep_cols = ['o:gender', 'o:MechVent', 'o:re_admission', 'o:age', 'o:Weight_kg']
+dem_keep_cols = ['o:gender', 'o:mechvent', 'o:re_admission', 'o:age', 'o:Weight_kg']
 obs_keep_cols = ['o:GCS', 'o:HR', 'o:SysBP',
        'o:MeanBP', 'o:DiaBP', 'o:RR', 'o:Temp_C', 'o:FiO2_1', 'o:Potassium',
        'o:Sodium', 'o:Chloride', 'o:Glucose', 'o:Magnesium', 'o:Calcium',
