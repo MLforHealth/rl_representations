@@ -71,8 +71,7 @@ def run(BC_network, train_dataloader, val_dataloader, num_epochs, storage_dir, l
 
 if __name__ == '__main__':
 
-    # Instead of the commented out code below, we use config files
-
+    
     # Define input arguments and parameters to override the ones in the config file
     parser = argparse.ArgumentParser()
     parser.add_argument('--demographics', dest='dem_context', default=True, action='store_true')
