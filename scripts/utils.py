@@ -149,7 +149,6 @@ class ReplayBuffer(object):
 
         self.next_state = np.array(self.state)
         self.action = np.zeros((self.max_size, 1))
-        self.next_state = np.array(self.state)
         self.reward = np.zeros((self.max_size, 1))
         self.not_done = np.zeros((self.max_size, 1))
 
