@@ -1,0 +1,7 @@
+test_set_tuples
+train_set_tuples
+val_set_tuples
+test/*
+Pipfile
+Pipfile.lock
+

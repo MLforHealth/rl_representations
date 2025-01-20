@@ -239,12 +239,12 @@ class Experiment(object):
             epoch_loss = []
             print("Experiment: autoencoder {0}: training Epoch = ".format(self.autoencoder), epoch+1, 'out of', self.autoencoder_num_epochs, 'epochs')
 
-            # Loop through the data using the data loader
+            # Loop through all the train data using the data loader
             for ii, (dem, ob, ac, l, t, scores, rewards, idx) in enumerate(self.train_loader):
                 # print("Batch {}".format(ii),end='')
                 dem = dem.to(device)  # 5 dimensional vector (Gender, Ventilation status, Re-admission status, Age, Weight)
                 ob = ob.to(device)    # 33 dimensional vector (time varying measures)
-                ac = ac.to(device)
+                ac = ac.to(device) # actions
                 l = l.to(device)
                 t = t.to(device)
                 scores = scores.to(device)
@@ -258,8 +258,10 @@ class Experiment(object):
                 train_loss, dec_loss, inv_loss = 0, 0, 0
                 model_loss, recon_loss, forward_loss = 0, 0, 0                    
                     
+                # Set training mode (nn.Module.train()). It does not actually trains the model, but just sets the model to training mode.
                 self.gen.train()
                 self.pred.train()
+
                 ob = ob[:,:max_length,:]
                 dem = dem[:,:max_length,:]
                 ac = ac[:,:max_length,:]
@@ -280,6 +282,7 @@ class Experiment(object):
                     train_loss, dec_loss, inv_loss, model_loss, recon_loss, forward_loss, corr_loss, loss_pred = loss_pred
                     train_loss = forward_loss + self.inv_loss_coef*inv_loss + self.dec_loss_coef*dec_loss - self.corr_coeff_param*corr_loss.sum()
                     train_loss.backward()
+                    # Clipping gradients
                     torch.nn.utils.clip_grad_norm(self.all_params, self.max_grad_norm)
                     self.optimizer.step()
                     epoch_loss.append(loss_pred.detach().cpu().numpy())
@@ -559,3 +562,4 @@ class Experiment(object):
 
         # Run dBCQ_utils.train_dBCQ
         train_dBCQ(replay_buffer, self.num_actions, self.hidden_size, self.device, params, behav_pol, pol_eval_dataloader, self.context_input)
+

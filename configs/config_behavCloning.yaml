@@ -1,0 +1,15 @@
+num_nodes: 128
+hidden_size: 128 # num_nodes should be equal to hidden_size, it's the same but used in different places with different names
+
+learning_rate: 0.0001
+storage_folder: 'test/'
+batch_size: 128
+# num_epochs: 5000
+num_epochs: 1
+weight_decay: 0.1
+optim_type: 'adam'
+
+
+# where replay buffers should be
+train_buffer: '/path/rl_representations/data/replay_buffer_without_encoding/train_buffer'
+val_buffer: '/path/rl_representations/data/replay_buffer_without_encoding/val_buffer'
