@@ -34,8 +34,9 @@ The data used to develop, run and evaluate our experiments is extracted from the
 This extracted cohort is for general purpose use, for the usage in this paper it required additional preprocessing which we outline here.
 - Run `scripts/compute_acuity_scores.py` to compute additional acuity scores with the raw patient features.
 - Run `scripts/split_sepsis_cohort.py` to compose a training, validation and testing split as well as remove binary or demographic information from the temporal patient features. This script also organizes the patient data into convenient trajectory formats for easier use with sequential or recurrent models.
+- Run `scripts/create_buffers.py` to create replay buffers needed in the next step. Make sure to set the location where you want the resulting files to be saved in `configs/config_behavCloning.yaml`.
 - Use Behavior Cloning on the data provided by the previous step to develop a baseline "expert" policy for use in training and evaluating RL policies from the learned patient representations.
-  * This is done by running `scripts/train_behavCloning.py`. An example of how this can be done is provided in `slurm_scripts/slurm_build_BC.py` --> `slurm_scripts/slurm_bc_exp`.
+  * Two options are possible: Use either `scripts/train_behavCloning_with_config_file.py` if you want parameters to be loaded only from the config files, or `scripts/train_behavCloning_with_command_line_args.py` to use command line arguments. **Note, that in the second option, the parameters from the config files are overwritten by command line arguments, and if you don't specify command lines arguments then the default values for these arguments from the code will be used, not the values from the config files.** For the first option, the relevant configs are `configs/config_behavCloning.yaml` and `configs/common.yaml`. For the second option, an example of how this can be done is provided in `slurm_scripts/slurm_build_BC.py` --> `slurm_scripts/slurm_bc_exp`. 
   * This will generate either `behav_policy_file` or `behav_policy_file_wDemo` which is used internal to Steps 2 and 3 below.
 
 ### Step 2: Learning Representations

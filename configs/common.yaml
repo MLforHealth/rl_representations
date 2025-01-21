@@ -1,4 +1,4 @@
-device: 'cuda'
+device: 'cpu' # or 'cuda'
 random_seed: 1234 # updated by run scripts
 folder_location: './results/'
 folder_name: 'test' # updated by run scripts
@@ -11,14 +11,15 @@ perception_neg_traj_ratio: 'NA'
 state_dim: 33                      
 num_actions: 25   
 context_dim: 5                     # Number of context/demographic/binary indicator variables we'll use as input
-
+dem_context: True
 
 # update these manually
 storage_path: '/scratch/hdd001/home/haoran/ml4h2020_srl_test/'
 
-train_data_file: '/scratch/hdd001/projects/ml4h/projects/srl_rl4h_tuples/new_train_set_tuples'
-validation_data_file: '/scratch/hdd001/projects/ml4h/projects/srl_rl4h_tuples/new_val_set_tuples'
-test_data_file: '/scratch/hdd001/projects/ml4h/projects/srl_rl4h_tuples/new_test_set_tuples'
+# where train, val and test tuples are
+train_data_file: '/path/rl_representations/data/train_set_tuples'
+validation_data_file: '/path/rl_representations/data/val_set_tuples'
+test_data_file: '/path/rl_representations/data/test_set_tuples'
 
 behav_policy_file_wDemo: '/scratch/ssd001/home/tkillian/ml4h2020_srl/BehavCloning/BC_l1e-5_n64_w0_sgd_withDemo/BC_model.pt'
 behav_policy_file: '/scratch/ssd001/home/tkillian/ml4h2020_srl/BehavCloning/BC_l1e-5_n64_w0_sgd/BC_model.pt'

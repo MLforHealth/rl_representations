@@ -12,18 +12,14 @@ Notes:
 
 import logging
 import numpy as np
-from hashlib import sha1
 import pandas as pd
 import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
 import os
 from models.common import mask_from_lengths
 from torch.utils.data import DataLoader
-from models.NeuralCDE.metamodel import NeuralCDE
 import controldiffeq
 
 logger = logging.getLogger(__name__)
@@ -136,7 +132,7 @@ def load_cde_data(fold, dataset, path, context_input, device):
 
 # Generic replay buffer for standard gym tasks (adapted from https://github.com/sfujim/BCQ/blob/master/discrete_BCQ/utils.py)
 class ReplayBuffer(object):
-    def __init__(self, state_dim, batch_size, buffer_size, device, encoded_state=False, obs_state_dim=50):
+    def __init__(self, state_dim, batch_size, buffer_size, device, encoded_state=False, obs_state_dim=38):
         self.batch_size = batch_size
         self.max_size = int(buffer_size)
         self.device = device
@@ -144,10 +140,15 @@ class ReplayBuffer(object):
 
         self.ptr = 0
         self.crt_size = 0
+        # If not encoded state, we put the not encoded data to self.state, instaead of self.obs_state
+        if not encoded_state:
+            self.state = np.zeros((self.max_size, obs_state_dim))
+            
+        else:
+            self.state = np.zeros((self.max_size, state_dim))
 
-        self.state = np.zeros((self.max_size, state_dim))
-        self.action = np.zeros((self.max_size, 1))
         self.next_state = np.array(self.state)
+        self.action = np.zeros((self.max_size, 1))
         self.reward = np.zeros((self.max_size, 1))
         self.not_done = np.zeros((self.max_size, 1))
 
@@ -164,6 +165,7 @@ class ReplayBuffer(object):
         self.not_done[self.ptr] = 1. - done
 
         if self.encoded_state:
+            # Saving the not-encoded observations for the state and next_state
             self.obs_state[self.ptr] = obs_state
             self.next_obs_state[self.ptr] = next_obs_state
 

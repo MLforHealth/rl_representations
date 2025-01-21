@@ -47,10 +47,11 @@ def run(autoencoder, domain, options):
     if autoencoder == 'CDE':
         model_params['coefs_folder'] =  os.path.join(params['storage_path'], model_params['coefs_folder'])
             
+    # Iterating over the keys in model_params and replacing the values in params merging the two dictionaries
     for i in model_params:
         params[i] = model_params[i]        
 
-    # replacing params with command line options
+    # Overriding params from config file with command line options if provided
     for opt in options:
         print(opt)
         assert opt[0] in params
@@ -61,13 +62,19 @@ def run(autoencoder, domain, options):
             new_opt = dtype(opt[1])
         params[opt[0]] = new_opt
 
+    # Printing final parameters
     print('Parameters ')
     for key in params:
         print(key, params[key])
     print('=' * 30)
 
-    # process param keys and values to match input to Cortex
-    params['device'] = torch.device(params["device"])
+    
+    if params['device'] == 'cuda':
+        if torch.cuda.is_available():
+            params['device'] = torch.device('cuda')
+        else:
+            params['device'] = torch.device('cpu')
+
     random_seed = params['random_seed']
     np.random.seed(random_seed)
     torch.manual_seed(random_seed)
@@ -75,6 +82,7 @@ def run(autoencoder, domain, options):
     params['rng'] = random_state
     params['domain'] = domain
         
+    # Update foldername to the full path
     folder_name = params['storage_path'] + params['folder_location'] + params['folder_name']
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
@@ -82,6 +90,7 @@ def run(autoencoder, domain, options):
     
     torch.set_num_threads(torch.get_num_threads())
     
+    # Save model_params as a separate key in params also
     params[f'{autoencoder.lower()}_hypers'] = model_params # Cortex hyperparameter dictionaries 
     
     # Experiment
